@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Council Operating System (COS)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-theme="light">
+    <!-- Dynamic Background for Transparent Worldview -->
+    <div class="bg-mesh"></div>
+
+    <!-- OS Layout Wrapper -->
+    <div class="os-wrapper">
+        
+        <!-- Top Navbar -->
+        <header class="topbar glass-panel-light">
+            <div class="topbar-left">
+                <button id="menu-toggle" class="btn-icon"><i class="fas fa-bars"></i></button>
+                <div class="brand">
+                    <div class="logo" style="display:flex; align-items:center; margin-right: 12px;">
+                        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: var(--logo-glow) drop-shadow(0 2px 4px var(--logo-shadow));">
+                            <defs>
+                                <linearGradient id="cosPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--logo-color-1)" />
+                                    <stop offset="100%" stop-color="var(--logo-color-2)" />
+                                </linearGradient>
+                                <linearGradient id="glassPillar" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--logo-color-1)" stop-opacity="0.9" />
+                                    <stop offset="100%" stop-color="var(--logo-color-1)" stop-opacity="0.2" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M 2 22 C 8 22, 11 4, 16 4 C 21 4, 24 22, 30 22" fill="none" stroke="url(#cosPrimary)" stroke-width="2" stroke-linecap="round" />
+                            <path d="M 2 18 C 8 18, 11 8, 16 8 C 21 8, 24 18, 30 18" fill="none" stroke="url(#cosPrimary)" stroke-width="0.75" stroke-opacity="0.6" stroke-dasharray="2 2" />
+                            <path d="M 11 12 C 11 7, 21 7, 21 12 Z" fill="url(#glassPillar)" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <line x1="16" y1="4" x2="16" y2="8" stroke="url(#cosPrimary)" stroke-width="1.5" />
+                            <circle cx="16" cy="3" r="1.5" fill="var(--logo-color-1)" />
+                            <path d="M 6 15 C 8 12, 10 12, 11 15" fill="none" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <path d="M 11 15 C 13 12, 15 12, 16 15" fill="none" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <path d="M 16 15 C 18 12, 19 12, 21 15" fill="none" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <path d="M 21 15 C 22 12, 24 12, 26 15" fill="none" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <rect x="5.5" y="15" width="1" height="9" fill="url(#glassPillar)" />
+                            <rect x="10.5" y="15" width="1" height="9" fill="url(#glassPillar)" />
+                            <rect x="15.5" y="15" width="1" height="9" fill="url(#glassPillar)" />
+                            <rect x="20.5" y="15" width="1" height="9" fill="url(#glassPillar)" />
+                            <rect x="25.5" y="15" width="1" height="9" fill="url(#glassPillar)" />
+                            <path d="M 4 24 L 28 24 L 29 26 L 3 26 Z" fill="url(#glassPillar)" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                            <path d="M 3 26 L 29 26 L 31 29 L 1 29 Z" fill="url(#glassPillar)" stroke="url(#cosPrimary)" stroke-width="0.5" />
+                        </svg>
+                    </div>
+                    <div class="brand-name" style="font-family: 'Yu Mincho', 'Noto Serif JP', serif; font-size: 1.25rem; font-weight: 500; letter-spacing: 1px; background: linear-gradient(120deg, var(--logo-color-1), var(--logo-color-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: var(--logo-glow) drop-shadow(0 2px 4px var(--logo-shadow));">Council Operating System</div>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="hardware-status">
+                    <span id="printer-status" class="status-indicator"><i class="fas fa-print"></i> Ready</span>
+                    <span id="ai-status" class="status-indicator"><i class="fas fa-microchip"></i> AI Online</span>
+                </div>
+                <button type="button" id="global-ai-settings-btn" class="btn-global-settings" title="AI・システム設定">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar (Off-canvas) -->
+        <nav id="sidebar" class="sidebar glass-panel">
+            <ul class="nav-links">
+                <li class="active" data-view="home"><i class="fas fa-home icon"></i> ホーム</li>
+                <li data-view="ringisho"><i class="fas fa-file-signature icon"></i> 稟議書</li>
+                <li data-view="rashinban"><i class="fas fa-compass icon"></i> 羅針盤</li>
+                <li data-view="attendance"><i class="fas fa-clipboard-list icon"></i> 出欠簿</li>
+                <li data-view="equipment"><i class="fas fa-list-ul icon"></i> 備品リスト</li>
+                <li data-view="search"><i class="fas fa-search icon"></i> ファイル検索</li>
+                <li data-view="todo"><i class="fas fa-check-square icon"></i> To Doリスト</li>
+                <li data-view="schedule"><i class="fas fa-clock icon"></i> スケジュール</li>
+                
+                <li class="nav-section-title">特設</li>
+                <li data-view="soukai"><i class="fas fa-users-rectangle icon"></i> 生徒総会</li>
+                <li data-view="seiunsai"><i class="fas fa-star icon"></i> 青雲祭</li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="theme-toggle" class="btn-glass"><i class="fas fa-moon"></i> ダークモード</button>
+                <div class="sys-status">
+                    <span class="status-dot"></span> Offline Ready
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dynamic Views Container -->
+            <div id="view-container" class="view-container">
+                <!-- Views will be injected here by app.js -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals and Overlays -->
+    <div id="ai-recommend-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <h3><i class="fas fa-magic"></i> COS-AI レコメンド</h3>
+            <p>去年の今頃は文化祭の予算案の準備をしていました。前回のテンプレートを使用して開始しますか？</p>
+            <div class="modal-actions">
+                <button class="btn-primary" onclick="closeModal()">開始する</button>
+                <button class="btn-secondary" onclick="closeModal()">今はしない</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay for Sidebar -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- Scripts -->
+    <!-- docxライブラリ: ページサイズをtwipで正確に指定可能（html-docx-jsはLetterサイズ固定のため置換） -->
+    <script src="js/docx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
